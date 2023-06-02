@@ -1,26 +1,22 @@
 import { Grid, GridItem, Text, Button } from "@chakra-ui/react";
 import UserForm from "../../components/UserForm";
 import OrderList from "../../components/OrderList";
-import { useState, useEffect } from "react";
+import { useContext  } from "react";
+import { addOrder } from "../../service/addOrder";
+import { DeliveryContext } from "../../App";
 
 const Orders = () => {
-  const [orderList, setOrderList] = useState(null);
+  const {setOrderList, orderList} = useContext(DeliveryContext);
 
   const totalPrice = () => {
     if (orderList) {
       const total = orderList.reduce((total, elem, i, array) => {
         const productPrice = elem.price.slice(0, -1) * elem.number;
-        return total = total + productPrice;
+        return (total = total + productPrice);
       }, 0);
-      return total
+      return total;
     }
   };
-
-  useEffect(() => {
-    const orderListStorege =
-      JSON.parse(localStorage.getItem("order-list")) || [];
-    setOrderList(() => orderListStorege);
-  }, []);
 
   return (
     <Grid
@@ -46,7 +42,7 @@ const Orders = () => {
         p="10px"
         overflow="auto"
       >
-        <OrderList orderList={orderList} />
+        <OrderList/>
       </GridItem>
       <GridItem
         colSpan={2}
@@ -59,7 +55,15 @@ const Orders = () => {
         <Text color="blue.600" fontSize="2xl">
           Total price: {totalPrice()}$
         </Text>
-        <Button variant="solid" colorScheme="blue" size="lg">
+        <Button
+          variant="solid"
+          colorScheme="blue"
+          size="lg"
+          type="button"
+          onClick={() => {
+            addOrder({orderList: orderList, total:totalPrice(), setOrder: setOrderList});
+          }}
+        >
           Submit
         </Button>
       </GridItem>

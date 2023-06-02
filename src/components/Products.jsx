@@ -11,14 +11,16 @@ import {
   ButtonGroup,
   Spacer,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { DeliveryContext } from "../App";
 
 const Products = () => {
   const { id } = useParams();
   const [productsList, setProductsList] = useState(null);
-  const [orderList, setOrderList] = useState(null);
+  const { setOrderList, orderList, setChoiceShop } =
+    useContext(DeliveryContext);
 
   const onClick = (product) => {
     const index = orderList.findIndex((i) => product._id === i._id);
@@ -28,6 +30,7 @@ const Products = () => {
       orderList[index].number = +orderList[index].number + 1;
       setOrderList(() => [...orderList]);
     }
+    setChoiceShop(id);
   };
 
   useEffect(() => {
@@ -39,15 +42,7 @@ const Products = () => {
         setProductsList(data);
       } catch (error) {}
     })();
-    const orderListStorege =
-      JSON.parse(localStorage.getItem("order-list")) || [];
-    setOrderList(() => orderListStorege);
   }, [id]);
-
-  useEffect(() => {
-    console.log(orderList);
-    localStorage.setItem("order-list", JSON.stringify(orderList));
-  }, [orderList]);
 
   return (
     <div>
@@ -78,7 +73,7 @@ const Products = () => {
               <Divider />
               <CardFooter>
                 <ButtonGroup spacing="2">
-                    {/* <Button
+                  {/* <Button
                       variant="solid"
                       colorScheme="blue"
                     onClick={() => {
@@ -88,10 +83,10 @@ const Products = () => {
                       Buy now
                     </Button> */}
                   <Button
-                    variant="ghost"
+                    variant="solid"
                     colorScheme="blue"
                     onClick={() => {
-                    onClick(i);
+                      onClick(i);
                     }}
                   >
                     Add to cart

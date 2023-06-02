@@ -1,18 +1,21 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import {
   List,
   ListItem,
-  Center,
   Image,
   Heading,
   Text,
   Spacer,
+  Center,
 } from "@chakra-ui/react";
+import { DeliveryContext } from "../App";
 
 const ShopsList = () => {
   const [shopsList, setShopsList] = useState(null);
+  const { choiceShop } = useContext(DeliveryContext);
+  console.log(choiceShop);
 
   useEffect(() => {
     (async () => {
@@ -25,27 +28,31 @@ const ShopsList = () => {
     })();
   }, []);
 
-  console.log(shopsList);
-
   return (
     <>
       <Heading mb="20px">Shops:</Heading>
       <List spacing={3}>
         {shopsList &&
           shopsList.map((i) => (
-            <ListItem key={i._id}>
+            <ListItem
+              key={i._id}
+              className={choiceShop !== i._id && choiceShop !== "" && "disable"}
+            >
               <Link to={`/shops/${i._id}`}>
                 <Center
                   w="100%"
                   py="10px"
                   px="15%"
-                  bg="rgba(255, 255, 255, 0.5)"
-                  border="2px solid black"
+                  bg={
+                    choiceShop !== i._id && choiceShop !== ""
+                      ? "rgba(0, 0, 0, 0.5)"
+                      : "rgba(255, 255, 255, 0.5)"
+                  }
                   borderRadius="20px"
                 >
                   <Image src={`${i.logo}`} w="30px" alt="Logo" />
                   <Spacer />
-                  <Text as='b' fontSize='2xl' color="teal.800">
+                  <Text as="b" fontSize="2xl" color="teal.800">
                     {i.shopName}
                   </Text>
                 </Center>
