@@ -9,6 +9,7 @@ const ToggleTheme = () => {
   return (
     <>
       <Button
+                    my='auto'
         colorScheme="teal"
         onClick={toggleColorMode}
       >

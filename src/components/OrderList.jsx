@@ -1,22 +1,12 @@
 import {
   List,
   ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
   Card,
   CardBody,
-  CardFooter,
   Image,
-  Button,
   Text,
   Stack,
   Heading,
-  Divider,
-  ButtonGroup,
-  Box,
-  StackDivider,
-  CardHeader,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -27,14 +17,15 @@ import {
 const OrderList = () => {
   return (
     <>
-      <UnorderedList>
+      <List>
         <ListItem>
-          <Card key="12233" width="40%">
-            <CardBody>
+          <Card key="12233"w='70%' mx='auto'>
+            <CardBody display='flex' gap='15px'>
               <Image
                 src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
                 alt="Green double couch with wooden legs"
                 borderRadius="lg"
+                w='60%'
               />
               <Stack mt="6" spacing="3">
                 <Heading size="md">Big Mak</Heading>
@@ -52,7 +43,7 @@ const OrderList = () => {
             </CardBody>
           </Card>
         </ListItem>
-      </UnorderedList>
+      </List>
     </>
   );
 };

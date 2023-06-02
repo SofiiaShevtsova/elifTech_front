@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams, Outlet, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 const Products = () => {
   const { id } = useParams();
@@ -28,8 +28,7 @@ const Products = () => {
         setProductsList(data);
       } catch (error) {}
     })();
-  }, []);
-  console.log(productsList);
+  }, [id]);
 
   return (
     <div>

@@ -1,16 +1,14 @@
 import {
-  Button,
   Input,
   VStack,
   FormControl,
   FormLabel,
-  FormErrorMessage,
 } from "@chakra-ui/react";
 
 const UserForm = () => {
   return (
     <>
-      <VStack spacing={6} align="flex-start" w={[250, 400, 600]} mx="auto">
+      <VStack spacing={6} align="center" justify='center' w={[250, 400, 600]} h='100%' mx="auto">
         <FormControl>
           <FormLabel htmlFor="name">Name</FormLabel>
           <Input
