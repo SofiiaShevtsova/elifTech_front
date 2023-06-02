@@ -1,14 +1,14 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
   List,
   ListItem,
-  ListIcon,
-  OrderedList,
-    UnorderedList,
+  Center,
+  Image,
   Heading,
   Text,
+  Spacer,
 } from "@chakra-ui/react";
 
 const ShopsList = () => {
@@ -28,15 +28,27 @@ const ShopsList = () => {
   console.log(shopsList);
 
   return (
-      <>
-          <Heading>Shops:</Heading>
+    <>
+      <Heading mb="20px">Shops:</Heading>
       <List spacing={3}>
         {shopsList &&
           shopsList.map((i) => (
             <ListItem key={i._id}>
-              {/* <ListIcon as={MdCheckCircle} color='green.500' /> */}
               <Link to={`/shops/${i._id}`}>
-                <Text>{i.shopName}</Text>
+                <Center
+                  w="100%"
+                  py="10px"
+                  px="15%"
+                  bg="rgba(255, 255, 255, 0.5)"
+                  border="2px solid black"
+                  borderRadius="20px"
+                >
+                  <Image src={`${i.logo}`} w="30px" alt="Logo" />
+                  <Spacer />
+                  <Text as='b' fontSize='2xl' color="teal.800">
+                    {i.shopName}
+                  </Text>
+                </Center>
               </Link>
             </ListItem>
           ))}

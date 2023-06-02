@@ -19,11 +19,11 @@ const Loyout = () => {
   return (
     <>
       <Container h="100vh" maxW='100vw' py='10px' px='50px'>
-        <Flex w='100%' justifyContent="center" mx="auto" h='10%'>
+        <Flex w='100%' justifyContent="center" mx="auto" h='10%' px='20px'>
           <Breadcrumb
             my='auto'
-            spacing="20px"
-            separator=""
+            spacing="50px"
+            separator="|"
             fontWeight="medium"
             fontSize={{ base: "16px", md: "24px", lg: "24px" }}
           >
