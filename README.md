@@ -19,7 +19,7 @@ If you have done everything correctly, you will see the following pages:
 Shops page
 ![Image alt](/src/images/Screenshot_2.png)
 Technologies
-The project is built with React using Axios library to interact with MongoDB, Express.js and Node.js to develop the back end of the application and styled by Styled-components.
+The project is built with React using Axios library to interact with MongoDB, Express.js and Node.js to develop the back end of the application and styled by Chakra-ui.
 
 Back-end part
 https://github.com/SofiiaShevtsova/elifTech_back.git
