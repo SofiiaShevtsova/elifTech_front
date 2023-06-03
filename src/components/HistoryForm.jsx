@@ -17,7 +17,7 @@ const HistoryForm = ({ setOrdersList }) => {
       e.preventDefault();
       try {
         const user = email ? { email: email } : { phone: phone };
-        const { data } = await axios.get(`http://localhost:4000/api/orders`, {
+        const { data } = await axios.get(`https://delivery-api-quzs.onrender.com/api/orders`, {
           params: { ...user },
         });
         if (!data.length) {

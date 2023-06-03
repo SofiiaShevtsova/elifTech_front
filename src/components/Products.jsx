@@ -46,7 +46,7 @@ const Products = () => {
     (async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4000/api/products/${id}`
+          `https://delivery-api-quzs.onrender.com/api/products/${id}`
         );
         setProductsList(data);
       } catch (error) {}

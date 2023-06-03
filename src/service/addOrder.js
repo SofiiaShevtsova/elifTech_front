@@ -22,7 +22,7 @@ export const addOrder = async ({ orderList, total, setOrder }) => {
       })
     );
 
-    await axios.post(`http://localhost:4000/api/orders`, {
+    await axios.post(`https://delivery-api-quzs.onrender.com/api/orders`, {
       ...user,
       order: listForOrder,
       totalPrice: `${total}`,
