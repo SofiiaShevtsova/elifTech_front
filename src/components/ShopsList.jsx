@@ -22,7 +22,7 @@ const ShopsList = () => {
     (async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4000/api/shops/allShops`
+          `https://delivery-api-vi24.onrender.com/api/shops/allShops`
         );
         setShopsList(data);
       } catch (error) {}
