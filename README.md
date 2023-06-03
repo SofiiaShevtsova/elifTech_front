@@ -24,7 +24,5 @@ The project is built with React using Axios library to interact with MongoDB, Ex
 Back-end part
 https://github.com/SofiiaShevtsova/elifTech_back.git
 
-To work locally, create a .env file and specify the necessary environment variables in it (following the example in .env.expample).
-
 Developed by:
 Junior Frontend Developer - Sofiia Shevtsova: GitHub
