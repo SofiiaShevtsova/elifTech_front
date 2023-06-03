@@ -5,23 +5,19 @@ import {
   Flex,
   Spacer,
   Spinner,
-  Box,
-  Center,
-  Alert,
-  AlertIcon,
-  AlertTitle,
   Container,
 } from "@chakra-ui/react";
 import { Link, Outlet } from "react-router-dom";
 import ToggleTheme from "./ButtonToggleTheme";
+import { Suspense } from "react";
 
 const Loyout = () => {
   return (
     <>
-      <Container h="100vh" maxW='100vw' py='10px' px='50px'>
-        <Flex w='100%' justifyContent="center" mx="auto" h='10%' px='20px'>
+      <Container h="100vh" maxW="100vw" py="10px" px="50px">
+        <Flex w="100%" justifyContent="center" mx="auto" h="10%" px="20px">
           <Breadcrumb
-            my='auto'
+            my="auto"
             spacing="50px"
             separator="|"
             fontWeight="medium"
@@ -30,7 +26,7 @@ const Loyout = () => {
             <BreadcrumbItem>
               <BreadcrumbLink
                 as={Link}
-                to="/shops"
+                to="/delivery/shops"
                 transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
                 _hover={{ color: "teal" }}
                 _focus={{ color: "teal" }}
@@ -41,7 +37,7 @@ const Loyout = () => {
             <BreadcrumbItem>
               <BreadcrumbLink
                 as={Link}
-                to="/orders"
+                to="/delivery/orders"
                 transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
                 _hover={{ color: "teal" }}
                 _focus={{ color: "teal" }}
@@ -49,11 +45,28 @@ const Loyout = () => {
                 Shopping cart
               </BreadcrumbLink>
             </BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbLink
+                as={Link}
+                to="/delivery/history"
+                transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+                _hover={{ color: "teal" }}
+                _focus={{ color: "teal" }}
+              >
+                History
+              </BreadcrumbLink>
+            </BreadcrumbItem>
           </Breadcrumb>
           <Spacer />
           <ToggleTheme />
         </Flex>
-        <Outlet />
+        <Suspense
+          fallback={
+            <Spinner emptyColor="gray.200" color="blue.500" size='xl' mt='30%' ml='50%'/>
+          }
+        >
+          <Outlet />
+        </Suspense>
       </Container>
     </>
   );

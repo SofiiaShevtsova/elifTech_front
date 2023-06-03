@@ -1,12 +1,30 @@
-import { Grid, GridItem, Text, Button } from "@chakra-ui/react";
+import { Grid, GridItem, Text, Button, useToast } from "@chakra-ui/react";
 import UserForm from "../../components/UserForm";
 import OrderList from "../../components/OrderList";
-import { useContext  } from "react";
+import { useContext } from "react";
 import { addOrder } from "../../service/addOrder";
 import { DeliveryContext } from "../../App";
+import Map from "../../components/Map";
 
 const Orders = () => {
-  const {setOrderList, orderList} = useContext(DeliveryContext);
+  const { setOrderList, orderList } = useContext(DeliveryContext);
+  const toast = useToast();
+
+  const onClick = () => {
+    addOrder({
+      orderList: orderList,
+      total: totalPrice(),
+      setOrder: setOrderList,
+    });
+    toast({
+      title: "Your order is in progress.",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+      position: "top",
+      variant: "subtle",
+    });
+  };
 
   const totalPrice = () => {
     if (orderList) {
@@ -27,11 +45,12 @@ const Orders = () => {
     >
       <GridItem
         colSpan={1}
-        rowSpan={5}
+        rowSpan={6}
         bg="rgba(0, 0, 0, 0.1)"
         borderRadius="20px"
         p="10px"
       >
+        <Map />
         <UserForm />
       </GridItem>
       <GridItem
@@ -42,10 +61,10 @@ const Orders = () => {
         p="10px"
         overflow="auto"
       >
-        <OrderList/>
+        <OrderList />
       </GridItem>
       <GridItem
-        colSpan={2}
+        colSpan={1}
         rowSpan={1}
         display="flex"
         justifyContent="flex-end"
@@ -56,13 +75,12 @@ const Orders = () => {
           Total price: {totalPrice()}$
         </Text>
         <Button
-          variant="solid"
+          variant={orderList.length === 0 ? "outline" : "solid"}
           colorScheme="blue"
           size="lg"
           type="button"
-          onClick={() => {
-            addOrder({orderList: orderList, total:totalPrice(), setOrder: setOrderList});
-          }}
+          onClick={onClick}
+          className={orderList.length === 0 && "disable"}
         >
           Submit
         </Button>

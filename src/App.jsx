@@ -1,9 +1,11 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { createContext, useState, useEffect } from "react";
-import Orders from "./pages/OrdersPage/Orders";
-import Shops from "./pages/ShopsPage/Shops";
+import { createContext, useState, useEffect, lazy,  } from "react";
 import Loyout from "./components/Loyout";
-import Products from "./components/Products";
+import Shops from "./pages/ShopsPage/Shops";
+
+const HistoryLazy = lazy(() => import("./pages/HistoryPage/History"));
+const ProductsLazy = lazy(() => import("./components/Products"));
+const OrdersLazy = lazy(() => import("./pages/OrdersPage/Orders"));
 
 export const DeliveryContext = createContext(null);
 
@@ -11,22 +13,22 @@ const orderListStorege = JSON.parse(localStorage.getItem("order-list")) || [];
 
 const App = () => {
   const [orderList, setOrderList] = useState(orderListStorege);
-  const [choiceShop, setChoiceShop] = useState('')
 
   useEffect(() => {
     localStorage.setItem("order-list", JSON.stringify(orderList));
   }, [orderList]);
 
   return (
-    <DeliveryContext.Provider value={{ setOrderList, orderList, choiceShop, setChoiceShop }}>
+    <DeliveryContext.Provider value={{ setOrderList, orderList }}>
       <Routes>
-        <Route path="/" element={<Loyout />}>
+        <Route path="delivery" element={<Loyout />}>
           <Route path="shops" element={<Shops />}>
-            <Route path=":id" element={<Products />} />
+            <Route path=":id" element={<ProductsLazy />} />
           </Route>
-          <Route path="orders" element={<Orders />} />
+          <Route path="orders" element={<OrdersLazy />} />
+          <Route path="history" element={<HistoryLazy />} />
         </Route>
-        <Route path="*" element={<Navigate to="/shops" />} />
+        <Route path="/*" element={<Navigate to="/delivery/shops" />} />
       </Routes>
     </DeliveryContext.Provider>
   );

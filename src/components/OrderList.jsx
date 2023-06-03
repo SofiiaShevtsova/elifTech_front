@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { DeliveryContext } from "../App";
 import { useContext } from "react";
+import EmptyList from "./EmptyList";
 
 const OrderList = () => {
   const { setOrderList, orderList } = useContext(DeliveryContext);
@@ -34,7 +35,7 @@ const OrderList = () => {
   return (
     <>
       <List spacing={10}>
-        {orderList &&
+        {orderList.length!==0 ?
           orderList.map((i) => (
             <ListItem key={i._id}>
               <Card w="80%" mx="auto">
@@ -68,7 +69,7 @@ const OrderList = () => {
                 </CardBody>
               </Card>
             </ListItem>
-          ))}
+          )): <EmptyList/>}
       </List>
     </>
   );

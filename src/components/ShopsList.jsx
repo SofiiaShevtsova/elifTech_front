@@ -14,8 +14,9 @@ import { DeliveryContext } from "../App";
 
 const ShopsList = () => {
   const [shopsList, setShopsList] = useState(null);
-  const { choiceShop } = useContext(DeliveryContext);
-  console.log(choiceShop);
+  const { orderList } = useContext(DeliveryContext);
+
+  const disableShop = (id) => orderList.length !== 0 && orderList[0].shop !== id;
 
   useEffect(() => {
     (async () => {
@@ -34,17 +35,14 @@ const ShopsList = () => {
       <List spacing={3}>
         {shopsList &&
           shopsList.map((i) => (
-            <ListItem
-              key={i._id}
-              className={choiceShop !== i._id && choiceShop !== "" && "disable"}
-            >
-              <Link to={`/shops/${i._id}`}>
+            <ListItem key={i._id} className={disableShop(i._id) && "disable"}>
+              <Link to={`/delivery/shops/${i._id}`}>
                 <Center
                   w="100%"
                   py="10px"
                   px="15%"
                   bg={
-                    choiceShop !== i._id && choiceShop !== ""
+                    disableShop(i._id)
                       ? "rgba(0, 0, 0, 0.5)"
                       : "rgba(255, 255, 255, 0.5)"
                   }
