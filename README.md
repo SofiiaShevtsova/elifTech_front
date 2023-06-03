@@ -16,7 +16,7 @@ Install dependencies of project: input npm install in console.
 Start the development server: npm start
 It will open a new tab in the your browser: http://localhost:3000.
 If you have done everything correctly, you will see the following pages:
-Main page
+Shops page
 ![Image alt](/src/images/Screenshot_2.png)
 Technologies
 The project is built with React using Axios library to interact with MongoDB, Express.js and Node.js to develop the back end of the application and styled by Styled-components.
