@@ -83,6 +83,9 @@ const Products = () => {
                >
                   <CardBody>
                      <Image
+                        objectFit="cover"
+                        w="100%"
+                        h="300px"
                         src={i.image}
                         alt="Green double couch with wooden legs"
                         borderRadius="lg"

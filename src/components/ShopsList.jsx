@@ -3,7 +3,10 @@ import {
    useEffect,
    useState,
 } from 'react';
-import { Link } from 'react-router-dom';
+import {
+   Link,
+   useParams,
+} from 'react-router-dom';
 
 import {
    Center,
@@ -24,6 +27,8 @@ const ShopsList = () => {
    const { orderList } = useContext(
       DeliveryContext,
    );
+
+   const { id } = useParams();
 
    const disableShop = (id) =>
       orderList.length !== 0 &&
@@ -76,7 +81,11 @@ const ShopsList = () => {
                            <Text
                               as="b"
                               fontSize="2xl"
-                              color="teal.800"
+                              color={
+                                 id === i._id
+                                    ? 'teal.500'
+                                    : 'teal.800'
+                              }
                            >
                               {i.shopName}
                            </Text>

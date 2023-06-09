@@ -21,6 +21,7 @@ const UserForm = () => {
                </FormLabel>
                <Input
                   variant="outline"
+                  borderColor="teal.800"
                   focusBorderColor="teal.400"
                   type="text"
                   name="name"
@@ -33,6 +34,7 @@ const UserForm = () => {
                </FormLabel>
                <Input
                   variant="outline"
+                  borderColor="teal.800"
                   focusBorderColor="teal.400"
                   type="email"
                   name="email"
@@ -44,6 +46,7 @@ const UserForm = () => {
                </FormLabel>
                <Input
                   variant="outline"
+                  borderColor="teal.800"
                   focusBorderColor="teal.400"
                   type="text"
                   name="phone"
@@ -55,6 +58,7 @@ const UserForm = () => {
                </FormLabel>
                <Input
                   variant="outline"
+                  borderColor="teal.800"
                   focusBorderColor="teal.400"
                   type="text"
                   name="address"

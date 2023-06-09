@@ -47,6 +47,8 @@ const HistoryList = ({ ordersList }) => {
                                  alt="Green double couch with wooden legs"
                                  borderRadius="lg"
                                  w="60%"
+                                 objectFit="cover"
+                                 h="200px"
                               />
                               <Stack
                                  mt="6"

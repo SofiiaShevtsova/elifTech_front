@@ -20,19 +20,12 @@ const Orders = () => {
    );
    const toast = useToast();
 
-   const onClick = () => {
-      addOrder({
+   const onClick = async () => {
+      await addOrder({
          orderList: orderList,
          total: totalPrice(),
          setOrder: setOrderList,
-      });
-      toast({
-         title: 'Your order is in progress.',
-         status: 'success',
-         duration: 4000,
-         isClosable: true,
-         position: 'top',
-         variant: 'subtle',
+         toast: toast,
       });
    };
 
